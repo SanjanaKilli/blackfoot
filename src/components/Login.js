@@ -27,7 +27,7 @@ const Login = () => {
             <div className="row justify-content-center">
                 <div className="col-lg-4 col-md-6 col-sm-8">
                 <h2 className="mt-4">Login</h2>
-                <p>Not Registered? <Link to="/">Create Account</Link></p>
+                <p>Not Registered? <Link to="/">Create New Account</Link></p>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">EMAIL</label>
