@@ -29,7 +29,7 @@ const CreateAccount = () => {
             <div className="row justify-content-center">
                 <div className="col-lg-4 col-md-6 col-sm-8">
                     <h2 className="mt-4">Create New Account</h2>
-                    <p>Already Registered? <a href="/login">Login</a></p>
+                    <p>Already Registered? <Link to="/login">Login</Link></p>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">NAME</label>

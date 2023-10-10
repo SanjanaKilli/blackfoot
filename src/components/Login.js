@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -22,10 +23,11 @@ const Login = () => {
 
     return (
         <div className="container">
-            <h2 className="mt-4">Login</h2>
-            
+                        
             <div className="row justify-content-center">
                 <div className="col-lg-4 col-md-6 col-sm-8">
+                <h2 className="mt-4">Login</h2>
+                <p>Not Registered? <Link to="/">Create Account</Link></p>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">EMAIL</label>
