@@ -43,8 +43,8 @@ const Login = () => {
                             <label htmlFor="userType" className="form-label">USER TYPE</label>
                             <select className="form-select" name="userType" value={formData.userType} onChange={handleChange} required>
                                 <option value="" disabled>Select</option>
-                                <option value="type1">Type 1</option>
-                                <option value="type2">Type 2</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
                             </select>
                         </div>
                         
