@@ -6,7 +6,7 @@ const CreateAccount = () => {
         name: '',
         email: '',
         password: '',
-        dateOfBirth: '',
+        confirmPassword: '',
         userType: ''
     });
 
@@ -20,6 +20,11 @@ const CreateAccount = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Ensure passwords match
+        if (formData.password !== formData.confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
         console.log('User Data: ', formData);
     };
 
@@ -47,8 +52,8 @@ const CreateAccount = () => {
                         </div>
                         
                         <div className="mb-3">
-                            <label htmlFor="dateOfBirth" className="form-label">DATE OF BIRTH</label>
-                            <input type="date" className="form-control" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
+                            <label htmlFor="confirmPassword" className="form-label">CONFIRM PASSWORD</label>
+                            <input type="password" className="form-control" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
                         </div>
                         
                         <div className="mb-3">
