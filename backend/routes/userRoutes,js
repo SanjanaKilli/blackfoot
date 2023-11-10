@@ -1,0 +1,53 @@
+const express = require('express');
+const bcrypt = require('bcrypt');
+const User = require('../models/User'); // Make sure the path is correct
+const router = express.Router();
+
+// Register user
+router.post('/register', async (req, res) => {
+  try {
+    const { name, email, password, userType } = req.body;
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: 'User already exists' });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      userType
+    });
+
+    await user.save();
+    res.status(201).json({ msg: 'User registered successfully' });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+// Login user
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ msg: 'User does not exist' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Invalid credentials' });
+    }
+
+    // Here you would typically generate a JWT token and return it to the user
+    // For simplicity, we'll just return a success message
+    res.status(200).json({ msg: 'User logged in successfully' });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
+module.exports = router;
